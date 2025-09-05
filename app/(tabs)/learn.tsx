@@ -146,7 +146,7 @@ const COLOR = {
 
 const s = StyleSheet.create({
   safe: { flex: 1, backgroundColor: COLOR.bg },
-  listContent: { padding: 16, paddingBottom: 32 },
+  listContent: { padding: 16, paddingBottom: 110 },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",

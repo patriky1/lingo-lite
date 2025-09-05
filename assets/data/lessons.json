@@ -3,36 +3,53 @@
     "id": "pt-01",
     "title": "Saudações",
     "exercises": [
-      {
-        "id": "ex-1",
-        "type": "select",
-        "prompt": "Ouça e escolha a tradução",
-        "answer": "Olá",
-        "audioKey": "hello_en",
+      { "id": "s-01", "type": "select", "prompt": "Traduza: Hello", "answer": "Olá",
         "options": [
           { "id": "a", "text": "Adeus" },
           { "id": "b", "text": "Olá", "isCorrect": true },
           { "id": "c", "text": "Por favor" }
         ]
       },
-      {
-        "id": "ex-2",
-        "type": "select",
-        "prompt": "Ouça e escolha",
-        "answer": "Bom dia",
-        "audioKey": "good_morning_en",
+      { "id": "s-02", "type": "type", "prompt": "Traduza para inglês: Obrigado", "answer": "Thank you" },
+      { "id": "s-03", "type": "select", "prompt": "Traduza: Good morning", "answer": "Bom dia",
         "options": [
           { "id": "a", "text": "Boa noite" },
-          { "id": "b", "text": "Boa tarde" },
-          { "id": "c", "text": "Bom dia", "isCorrect": true }
+          { "id": "b", "text": "Bom dia", "isCorrect": true },
+          { "id": "c", "text": "Até logo" }
         ]
       },
-      {
-        "id": "ex-3",
-        "type": "type",
-        "prompt": "Ouça e digite em inglês: Obrigado",
-        "answer": "Thank you",
-        "audioKey": "thank_you_en"
+      { "id": "s-04", "type": "type", "prompt": "Traduza para inglês: Boa tarde", "answer": "Good afternoon" },
+      { "id": "s-05", "type": "type", "prompt": "Traduza para inglês: Boa noite (cumprimento)", "answer": "Good evening" },
+      { "id": "s-06", "type": "select", "prompt": "Escolha o cumprimento para a noite (cumprimento)", "answer": "Good evening",
+        "options": [
+          { "id": "a", "text": "Good evening", "isCorrect": true },
+          { "id": "b", "text": "Good night" },
+          { "id": "c", "text": "See you" }
+        ]
+      },
+      { "id": "s-07", "type": "type", "prompt": "Complete: ____! How are you?", "answer": "Hello" },
+      { "id": "s-08", "type": "select", "prompt": "Traduza: See you later", "answer": "Até mais",
+        "options": [
+          { "id": "a", "text": "Até mais", "isCorrect": true },
+          { "id": "b", "text": "Com licença" },
+          { "id": "c", "text": "Desculpe" }
+        ]
+      },
+      { "id": "s-09", "type": "type", "prompt": "Traduza para inglês: Com licença", "answer": "Excuse me" },
+      { "id": "s-10", "type": "select", "prompt": "Traduza: Good night", "answer": "Boa noite",
+        "options": [
+          { "id": "a", "text": "Boa noite", "isCorrect": true },
+          { "id": "b", "text": "Bom dia" },
+          { "id": "c", "text": "Até amanhã" }
+        ]
+      },
+      { "id": "s-11", "type": "type", "prompt": "Responda em inglês: De nada", "answer": "You're welcome" },
+      { "id": "s-12", "type": "select", "prompt": "Melhor resposta para: Thank you", "answer": "You're welcome",
+        "options": [
+          { "id": "a", "text": "You're welcome", "isCorrect": true },
+          { "id": "b", "text": "Goodbye" },
+          { "id": "c", "text": "Good luck" }
+        ]
       }
     ]
   },
@@ -40,11 +57,260 @@
     "id": "pt-02",
     "title": "Básico",
     "exercises": [
-      { "id": "ex-4", "type": "select", "prompt": "Ouça e escolha", "answer": "Boa noite", "audioKey": "good_night_en",
+      { "id": "b-01", "type": "type", "prompt": "Traduza: Eu sou estudante", "answer": "I am a student" },
+      { "id": "b-02", "type": "select", "prompt": "Complete: You ___ a teacher.", "answer": "are",
         "options": [
-          { "id": "a", "text": "Boa noite", "isCorrect": true },
-          { "id": "b", "text": "Bom dia" },
-          { "id": "c", "text": "Até amanhã" }
+          { "id": "a", "text": "am" },
+          { "id": "b", "text": "is" },
+          { "id": "c", "text": "are", "isCorrect": true }
+        ]
+      },
+      { "id": "b-03", "type": "type", "prompt": "Traduza: Ela é engenheira", "answer": "She is an engineer" },
+      { "id": "b-04", "type": "select", "prompt": "Escolha o artigo correto: ___ apple", "answer": "an",
+        "options": [
+          { "id": "a", "text": "a" },
+          { "id": "b", "text": "an", "isCorrect": true },
+          { "id": "c", "text": "the" }
+        ]
+      },
+      { "id": "b-05", "type": "type", "prompt": "Traduza: Nós somos amigos", "answer": "We are friends" },
+      { "id": "b-06", "type": "select", "prompt": "Traduza: They are happy", "answer": "Eles estão felizes",
+        "options": [
+          { "id": "a", "text": "Eles estão tristes" },
+          { "id": "b", "text": "Eles estão felizes", "isCorrect": true },
+          { "id": "c", "text": "Elas são amigas" }
+        ]
+      }
+    ]
+  },
+
+  { "id": "pt-03", "title": "Números",
+    "exercises": [
+      { "id": "n-01", "type": "select", "prompt": "Traduza: Five", "answer": "Cinco",
+        "options": [
+          { "id": "a", "text": "Quatro" },
+          { "id": "b", "text": "Cinco", "isCorrect": true },
+          { "id": "c", "text": "Seis" }
+        ]
+      },
+      { "id": "n-02", "type": "type", "prompt": "Escreva em inglês: 12", "answer": "twelve" },
+      { "id": "n-03", "type": "type", "prompt": "Traduza: vinte e um", "answer": "twenty-one" },
+      { "id": "n-04", "type": "select", "prompt": "Qual é 30 em inglês?", "answer": "thirty",
+        "options": [
+          { "id": "a", "text": "thirteen" },
+          { "id": "b", "text": "thirty", "isCorrect": true },
+          { "id": "c", "text": "three" }
+        ]
+      },
+      { "id": "n-05", "type": "type", "prompt": "Escreva em inglês: 100", "answer": "one hundred" },
+      { "id": "n-06", "type": "select", "prompt": "Traduza: Eight", "answer": "Oito",
+        "options": [
+          { "id": "a", "text": "Oito", "isCorrect": true },
+          { "id": "b", "text": "Nove" },
+          { "id": "c", "text": "Sete" }
+        ]
+      }
+    ]
+  },
+
+  { "id": "pt-04", "title": "Cores",
+    "exercises": [
+      { "id": "c-01", "type": "select", "prompt": "Traduza: Blue", "answer": "Azul",
+        "options": [
+          { "id": "a", "text": "Azul", "isCorrect": true },
+          { "id": "b", "text": "Verde" },
+          { "id": "c", "text": "Amarelo" }
+        ]
+      },
+      { "id": "c-02", "type": "type", "prompt": "Traduza para inglês: Vermelho", "answer": "Red" },
+      { "id": "c-03", "type": "select", "prompt": "Qual é a tradução de Black?", "answer": "Preto",
+        "options": [
+          { "id": "a", "text": "Preto", "isCorrect": true },
+          { "id": "b", "text": "Branco" },
+          { "id": "c", "text": "Cinza" }
+        ]
+      },
+      { "id": "c-04", "type": "type", "prompt": "Traduza para inglês: Branco", "answer": "White" },
+      { "id": "c-05", "type": "type", "prompt": "Traduza para inglês: Amarelo", "answer": "Yellow" },
+      { "id": "c-06", "type": "select", "prompt": "Traduza: Green", "answer": "Verde",
+        "options": [
+          { "id": "a", "text": "Verde", "isCorrect": true },
+          { "id": "b", "text": "Azul" },
+          { "id": "c", "text": "Vermelho" }
+        ]
+      }
+    ]
+  },
+
+  { "id": "pt-05", "title": "Família",
+    "exercises": [
+      { "id": "f-01", "type": "select", "prompt": "Traduza: Mother", "answer": "Mãe",
+        "options": [
+          { "id": "a", "text": "Mãe", "isCorrect": true },
+          { "id": "b", "text": "Pai" },
+          { "id": "c", "text": "Tia" }
+        ]
+      },
+      { "id": "f-02", "type": "type", "prompt": "Traduza para inglês: Pai", "answer": "Father" },
+      { "id": "f-03", "type": "type", "prompt": "Traduza para inglês: Irmã", "answer": "Sister" },
+      { "id": "f-04", "type": "select", "prompt": "Traduza: Son", "answer": "Filho",
+        "options": [
+          { "id": "a", "text": "Filho", "isCorrect": true },
+          { "id": "b", "text": "Filha" },
+          { "id": "c", "text": "Primo" }
+        ]
+      },
+      { "id": "f-05", "type": "type", "prompt": "Traduza para inglês: Avó", "answer": "Grandmother" },
+      { "id": "f-06", "type": "select", "prompt": "Qual é a tradução de Cousin?", "answer": "Primo/Prima",
+        "options": [
+          { "id": "a", "text": "Sobrinho" },
+          { "id": "b", "text": "Primo/Prima", "isCorrect": true },
+          { "id": "c", "text": "Tio" }
+        ]
+      }
+    ]
+  },
+
+  { "id": "pt-06", "title": "Comidas",
+    "exercises": [
+      { "id": "fd-01", "type": "select", "prompt": "Traduza: Apple", "answer": "Maçã",
+        "options": [
+          { "id": "a", "text": "Maçã", "isCorrect": true },
+          { "id": "b", "text": "Pera" },
+          { "id": "c", "text": "Banana" }
+        ]
+      },
+      { "id": "fd-02", "type": "type", "prompt": "Traduza para inglês: Pão", "answer": "Bread" },
+      { "id": "fd-03", "type": "type", "prompt": "Traduza para inglês: Água", "answer": "Water" },
+      { "id": "fd-04", "type": "select", "prompt": "Traduza: Coffee", "answer": "Café",
+        "options": [
+          { "id": "a", "text": "Café", "isCorrect": true },
+          { "id": "b", "text": "Leite" },
+          { "id": "c", "text": "Suco" }
+        ]
+      },
+      { "id": "fd-05", "type": "type", "prompt": "Traduza para inglês: Arroz", "answer": "Rice" },
+      { "id": "fd-06", "type": "select", "prompt": "Qual é a tradução de Meat?", "answer": "Carne",
+        "options": [
+          { "id": "a", "text": "Carne", "isCorrect": true },
+          { "id": "b", "text": "Peixe" },
+          { "id": "c", "text": "Fruta" }
+        ]
+      }
+    ]
+  },
+
+  { "id": "pt-07", "title": "Lugares",
+    "exercises": [
+      { "id": "pl-01", "type": "select", "prompt": "Traduza: School", "answer": "Escola",
+        "options": [
+          { "id": "a", "text": "Escola", "isCorrect": true },
+          { "id": "b", "text": "Hospital" },
+          { "id": "c", "text": "Praia" }
+        ]
+      },
+      { "id": "pl-02", "type": "type", "prompt": "Traduza para inglês: Hospital", "answer": "Hospital" },
+      { "id": "pl-03", "type": "type", "prompt": "Traduza para inglês: Banco (lugar)", "answer": "Bank" },
+      { "id": "pl-04", "type": "select", "prompt": "Traduza: Airport", "answer": "Aeroporto",
+        "options": [
+          { "id": "a", "text": "Aeroporto", "isCorrect": true },
+          { "id": "b", "text": "Estação" },
+          { "id": "c", "text": "Parque" }
+        ]
+      },
+      { "id": "pl-05", "type": "type", "prompt": "Traduza para inglês: Restaurante", "answer": "Restaurant" },
+      { "id": "pl-06", "type": "select", "prompt": "Qual é a tradução de Museum?", "answer": "Museu",
+        "options": [
+          { "id": "a", "text": "Igreja" },
+          { "id": "b", "text": "Museu", "isCorrect": true },
+          { "id": "c", "text": "Loja" }
+        ]
+      }
+    ]
+  },
+
+  { "id": "pt-08", "title": "Rotina",
+    "exercises": [
+      { "id": "rt-01", "type": "type", "prompt": "Traduza: Eu acordo às seis", "answer": "I wake up at six" },
+      { "id": "rt-02", "type": "select", "prompt": "Complete: I ___ breakfast at 7.", "answer": "have",
+        "options": [
+          { "id": "a", "text": "has" },
+          { "id": "b", "text": "have", "isCorrect": true },
+          { "id": "c", "text": "am" }
+        ]
+      },
+      { "id": "rt-03", "type": "type", "prompt": "Traduza: Eu vou ao trabalho de ônibus", "answer": "I go to work by bus" },
+      { "id": "rt-04", "type": "select", "prompt": "Traduza: I have lunch at noon", "answer": "Eu almoço ao meio-dia",
+        "options": [
+          { "id": "a", "text": "Eu almoço ao meio-dia", "isCorrect": true },
+          { "id": "b", "text": "Eu janto à meia-noite" },
+          { "id": "c", "text": "Eu tomo café às 10" }
+        ]
+      },
+      { "id": "rt-05", "type": "type", "prompt": "Traduza: Eu estudo inglês à noite", "answer": "I study English at night" },
+      { "id": "rt-06", "type": "select", "prompt": "Complete: She ___ to bed at 11.", "answer": "goes",
+        "options": [
+          { "id": "a", "text": "go" },
+          { "id": "b", "text": "goes", "isCorrect": true },
+          { "id": "c", "text": "going" }
+        ]
+      }
+    ]
+  },
+
+  { "id": "pt-09", "title": "Tempo & Clima",
+    "exercises": [
+      { "id": "wc-01", "type": "select", "prompt": "Traduza: It's raining", "answer": "Está chovendo",
+        "options": [
+          { "id": "a", "text": "Está ensolarado" },
+          { "id": "b", "text": "Está chovendo", "isCorrect": true },
+          { "id": "c", "text": "Está nevando" }
+        ]
+      },
+      { "id": "wc-02", "type": "type", "prompt": "Traduza para inglês: Está frio", "answer": "It's cold" },
+      { "id": "wc-03", "type": "type", "prompt": "Traduza para inglês: Está quente", "answer": "It's hot" },
+      { "id": "wc-04", "type": "select", "prompt": "Traduza: It's cloudy", "answer": "Está nublado",
+        "options": [
+          { "id": "a", "text": "Está nublado", "isCorrect": true },
+          { "id": "b", "text": "Está ventando" },
+          { "id": "c", "text": "Está chovendo" }
+        ]
+      },
+      { "id": "wc-05", "type": "type", "prompt": "Traduza: Hoje é segunda-feira", "answer": "Today is Monday" },
+      { "id": "wc-06", "type": "select", "prompt": "Qual é a tradução de Tomorrow?", "answer": "Amanhã",
+        "options": [
+          { "id": "a", "text": "Ontem" },
+          { "id": "b", "text": "Amanhã", "isCorrect": true },
+          { "id": "c", "text": "Hoje" }
+        ]
+      }
+    ]
+  },
+
+  { "id": "pt-10", "title": "Verbos comuns",
+    "exercises": [
+      { "id": "vb-01", "type": "select", "prompt": "Traduza: to go", "answer": "ir",
+        "options": [
+          { "id": "a", "text": "ir", "isCorrect": true },
+          { "id": "b", "text": "ver" },
+          { "id": "c", "text": "vir" }
+        ]
+      },
+      { "id": "vb-02", "type": "type", "prompt": "Traduza para inglês: fazer (verbo)", "answer": "to do" },
+      { "id": "vb-03", "type": "type", "prompt": "Traduza para inglês: ter", "answer": "to have" },
+      { "id": "vb-04", "type": "select", "prompt": "Complete: I ___ music every day.", "answer": "listen to",
+        "options": [
+          { "id": "a", "text": "listens" },
+          { "id": "b", "text": "listen to", "isCorrect": true },
+          { "id": "c", "text": "listening" }
+        ]
+      },
+      { "id": "vb-05", "type": "type", "prompt": "Traduza: Eu gosto de ler", "answer": "I like to read" },
+      { "id": "vb-06", "type": "select", "prompt": "Traduza: She wants to learn English", "answer": "Ela quer aprender inglês",
+        "options": [
+          { "id": "a", "text": "Ela quer aprender inglês", "isCorrect": true },
+          { "id": "b", "text": "Ela sabe inglês" },
+          { "id": "c", "text": "Ela ensina inglês" }
         ]
       }
     ]
