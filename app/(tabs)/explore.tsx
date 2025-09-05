@@ -1,110 +1,199 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+// app/(tabs)/explore.tsx
+import React, { useEffect, useMemo } from "react";
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import { useGameStore } from "../../src/store/useGameStore";
+import { useQuestsStore } from "../../src/store/useQuestsStore";
 
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
+const COLOR = {
+  bg: "#fff",
+  text: "#111827",
+  muted: "#6b7280",
+  card: "#f6f7f8",
+  border: "#e5e7eb",
+  primary: "#2e7d32",
+  ok: "#16a34a"
+};
 
-export default function TabTwoScreen() {
+type QuestVM = {
+  id: string;
+  title: string;
+  scope: "daily" | "weekly";
+  progress: number;
+  target: number;
+  rewardXp: number;
+  claimed: boolean;
+};
+
+function Progress({ value }: { value: number }) {
+  const v = Math.max(0, Math.min(1, value));
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image source={require('@/assets/images/react-logo.png')} style={{ alignSelf: 'center' }} />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-            custom fonts such as this one.
-          </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user&apos;s current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful <ThemedText type="defaultSemiBold">react-native-reanimated</ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+    <View style={s.progressBg}>
+      <View style={[s.progressFill, { width: `${v * 100}%` }]} />
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+function QuestCard({ q, onClaim }: { q: QuestVM; onClaim: (q: QuestVM) => void }) {
+  const pct = Math.min(1, q.progress / q.target);
+  const done = pct >= 1;
+
+  return (
+    <View style={s.card}>
+      <View style={{ flex: 1 }}>
+        <Text style={s.cardTitle}>{q.title}</Text>
+        <Text style={s.cardMeta}>
+          {Math.min(q.progress, q.target)} / {q.target} • Recompensa: {q.rewardXp} XP
+        </Text>
+        <View style={{ marginTop: 8 }}>
+          <Progress value={pct} />
+        </View>
+      </View>
+
+      <TouchableOpacity
+        style={[
+          s.claim,
+          done && !q.claimed ? s.claimReady : q.claimed ? s.claimClaimed : s.claimDisabled
+        ]}
+        onPress={() => (done && !q.claimed ? onClaim(q) : null)}
+        disabled={!done || q.claimed}
+        activeOpacity={0.9}
+      >
+        <Text style={s.claimText}>
+          {q.claimed ? "Resgatado" : done ? "Resgatar" : "Em progresso"}
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+export default function Explore() {
+  const { xp, hearts, streak, addXP, lastStudyAt } = useGameStore();
+  const { xpSnapshot, claimedDaily, claimedWeekly, studiedDatesThisWeek, syncFromGame, claim } =
+    useQuestsStore();
+
+  // sincroniza resets e dias estudados
+  useEffect(() => {
+    syncFromGame({ xp, lastStudyAt });
+  }, [xp, lastStudyAt]);
+
+  const xpToday = Math.max(0, xp - (xpSnapshot || 0));
+  const studiedToday = lastStudyAt === new Date().toDateString();
+
+  const quests = useMemo<QuestVM[]>(() => {
+    const daily: QuestVM[] = [
+      {
+        id: "d_xp_30",
+        scope: "daily",
+        title: "Ganhe 30 XP hoje",
+        target: 30,
+        progress: xpToday,
+        rewardXp: 10,
+        claimed: !!claimedDaily["d_xp_30"]
+      },
+      {
+        id: "d_study_1",
+        scope: "daily",
+        title: "Conclua 1 lição hoje",
+        target: 1,
+        progress: studiedToday ? 1 : 0,
+        rewardXp: 15,
+        claimed: !!claimedDaily["d_study_1"]
+      }
+    ];
+
+    const weekly: QuestVM[] = [
+      {
+        id: "w_days_5",
+        scope: "weekly",
+        title: "Estude em 5 dias nesta semana",
+        target: 5,
+        progress: studiedDatesThisWeek.length,
+        rewardXp: 50,
+        claimed: !!claimedWeekly["w_days_5"]
+      }
+    ];
+
+    return [...daily, ...weekly];
+  }, [xpToday, studiedToday, claimedDaily, claimedWeekly, studiedDatesThisWeek]);
+
+  const onClaim = (q: QuestVM) => {
+    // concede recompensa e marca como resgatado
+    addXP(q.rewardXp);
+    claim(q.scope, q.id);
+  };
+
+  const dailyList = quests.filter((q) => q.scope === "daily");
+  const weeklyList = quests.filter((q) => q.scope === "weekly");
+
+  return (
+    <View style={s.container}>
+      <Text style={s.title}>Missões</Text>
+      <Text style={s.subtitle}>Complete objetivos para ganhar XP extra</Text>
+
+      {/* KPIs da sessão */}
+      <View style={s.kpis}>
+        <View style={s.kpi}><Text style={s.kpiValue}>{xp}</Text><Text style={s.kpiLabel}>XP total</Text></View>
+        <View style={s.kpi}><Text style={s.kpiValue}>{hearts}</Text><Text style={s.kpiLabel}>Vidas</Text></View>
+        <View style={s.kpi}><Text style={s.kpiValue}>{streak}</Text><Text style={s.kpiLabel}>Streak</Text></View>
+      </View>
+
+      <Text style={s.section}>Diárias</Text>
+      <FlatList
+        data={dailyList}
+        keyExtractor={(i) => i.id}
+        renderItem={({ item }) => <QuestCard q={item} onClaim={onClaim} />}
+        ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+        contentContainerStyle={{ paddingHorizontal: 16 }}
+      />
+
+      <Text style={[s.section, { marginTop: 18 }]}>Semana</Text>
+      <FlatList
+        data={weeklyList}
+        keyExtractor={(i) => i.id}
+        renderItem={({ item }) => <QuestCard q={item} onClaim={onClaim} />}
+        ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
+        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 24 }}
+      />
+    </View>
+  );
+}
+
+const s = StyleSheet.create({
+  container: { flex: 1, backgroundColor: COLOR.bg },
+  title: { fontSize: 24, fontWeight: "800", color: COLOR.text, marginTop: 30, marginHorizontal: 16 },
+  subtitle: { fontSize: 14, color: COLOR.muted, marginHorizontal: 16, marginBottom: 12 },
+
+  kpis: { flexDirection: "row", gap: 12, paddingHorizontal: 16, marginBottom: 8 },
+  kpi: {
+    flex: 1,
+    backgroundColor: COLOR.card,
+    borderWidth: 1,
+    borderColor: COLOR.border,
+    borderRadius: 12,
+    alignItems: "center",
+    paddingVertical: 10
   },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
+  kpiValue: { fontSize: 18, fontWeight: "800", color: COLOR.text },
+  kpiLabel: { fontSize: 12, color: COLOR.muted, marginTop: 2 },
+
+  section: { fontSize: 16, fontWeight: "700", color: COLOR.text, marginTop: 10, marginBottom: 8, marginHorizontal: 16 },
+
+  card: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: COLOR.card,
+    borderRadius: 16,
+    padding: 14,
+    borderWidth: 1,
+    borderColor: COLOR.border
   },
+  cardTitle: { fontSize: 16, fontWeight: "700", color: COLOR.text },
+  cardMeta: { fontSize: 12, color: COLOR.muted, marginTop: 4 },
+  progressBg: { height: 8, backgroundColor: "#e5e7eb", borderRadius: 999, overflow: "hidden" },
+  progressFill: { height: 8, backgroundColor: COLOR.primary },
+  claim: { marginLeft: 12, paddingVertical: 10, paddingHorizontal: 12, borderRadius: 12, minWidth: 100, alignItems: "center" },
+  claimDisabled: { backgroundColor: "#e5e7eb" },
+  claimReady: { backgroundColor: COLOR.primary },
+  claimClaimed: { backgroundColor: COLOR.ok },
+  claimText: { color: "#fff", fontWeight: "800" }
 });

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "pt-01",
+    "title": "Saudações",
+    "exercises": [
+      {
+        "id": "ex-1",
+        "type": "select",
+        "prompt": "Ouça e escolha a tradução",
+        "answer": "Olá",
+        "audioKey": "hello_en",
+        "options": [
+          { "id": "a", "text": "Adeus" },
+          { "id": "b", "text": "Olá", "isCorrect": true },
+          { "id": "c", "text": "Por favor" }
+        ]
+      },
+      {
+        "id": "ex-2",
+        "type": "select",
+        "prompt": "Ouça e escolha",
+        "answer": "Bom dia",
+        "audioKey": "good_morning_en",
+        "options": [
+          { "id": "a", "text": "Boa noite" },
+          { "id": "b", "text": "Boa tarde" },
+          { "id": "c", "text": "Bom dia", "isCorrect": true }
+        ]
+      },
+      {
+        "id": "ex-3",
+        "type": "type",
+        "prompt": "Ouça e digite em inglês: Obrigado",
+        "answer": "Thank you",
+        "audioKey": "thank_you_en"
+      }
+    ]
+  },
+  {
+    "id": "pt-02",
+    "title": "Básico",
+    "exercises": [
+      { "id": "ex-4", "type": "select", "prompt": "Ouça e escolha", "answer": "Boa noite", "audioKey": "good_night_en",
+        "options": [
+          { "id": "a", "text": "Boa noite", "isCorrect": true },
+          { "id": "b", "text": "Bom dia" },
+          { "id": "c", "text": "Até amanhã" }
+        ]
+      }
+    ]
+  }
+]
